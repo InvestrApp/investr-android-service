@@ -1,0 +1,1 @@
+worker: java -jar build/libs/investr-android-service-1.0.0.jar
