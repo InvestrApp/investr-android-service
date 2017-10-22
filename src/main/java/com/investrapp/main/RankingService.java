@@ -164,7 +164,7 @@ public class RankingService implements Runnable {
         query.whereEqualTo(PLAYER_FIELD, portfolio.player);
         query.whereEqualTo(COMPETITION_FIELD, portfolio.competition);
         List<ParseObject> list = query.find();
-        if (list.size() > 0) {
+        if (list != null && list.size() > 0) {
             ParseObject ranking = list.get(0);
             ranking.put(RANKING_FIELD, portfolio.rank);
             ranking.put(PORTFOLIO_VALUE_FIELD, portfolio.value);
