@@ -4,6 +4,7 @@ import org.parse4j.ParseException;
 import org.parse4j.ParseObject;
 import org.parse4j.ParseQuery;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.PriorityQueue;
@@ -15,6 +16,7 @@ public class RankingService implements Runnable {
     private static String RANKING_CLASS = "Ranking";
     private static String TRANSACTION_CLASS = "Transaction";
     private static String COMPETITION_FIELD = "competition";
+    private static String PORTFOLIO_SNAPSHOT_CLASS = "portfolio_snapshot";
     private static String PLAYER_FIELD = "player";
     private static String PRICE_FIELD = "price";
     private static String UNITS_FIELD = "units";
@@ -44,6 +46,7 @@ public class RankingService implements Runnable {
     public void run() {
         LOGGER.log(Level.INFO,"Starting new run.");
 
+        mTransactions = new ArrayList<>();
         mCompetitionRankings = new HashMap<>();
         mAssetPrices = new HashMap<>();
         mCompetitions = new HashMap<>();
@@ -143,6 +146,7 @@ public class RankingService implements Runnable {
                 Portfolio portfolio = heap.poll();
                 portfolio.rank = rank;
                 saveRanking(portfolio);
+                addSnapshot(portfolio);
                 rank += 1;
             }
         }
@@ -172,6 +176,15 @@ public class RankingService implements Runnable {
             return true;
         }
         return false;
+    }
+
+    private void addSnapshot(Portfolio portfolio) throws ParseException {
+        ParseObject snapshot = new ParseObject(PORTFOLIO_SNAPSHOT_CLASS);
+        snapshot.put(COMPETITION_FIELD, portfolio.competition);
+        snapshot.put(PLAYER_FIELD, portfolio.player);
+        snapshot.put(PORTFOLIO_VALUE_FIELD, portfolio.value);
+        snapshot.put(RANKING_FIELD, portfolio.rank);
+        snapshot.save();
     }
 
 }
