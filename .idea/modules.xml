@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/investr-android-service.iml" filepath="$PROJECT_DIR$/.idea/modules/investr-android-service.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/investr-android-service_main.iml" filepath="$PROJECT_DIR$/.idea/modules/investr-android-service_main.iml" group="investr-android-service" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/investr-android-service_test.iml" filepath="$PROJECT_DIR$/.idea/modules/investr-android-service_test.iml" group="investr-android-service" />
+      <module fileurl="file://$PROJECT_DIR$/investr-android-service.iml" filepath="$PROJECT_DIR$/investr-android-service.iml" />
     </modules>
   </component>
 </project>

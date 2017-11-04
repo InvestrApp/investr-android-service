@@ -146,7 +146,6 @@ public class RankingService implements Runnable {
                 Portfolio portfolio = heap.poll();
                 portfolio.rank = rank;
                 saveRanking(portfolio);
-                addSnapshot(portfolio);
                 rank += 1;
             }
         }
